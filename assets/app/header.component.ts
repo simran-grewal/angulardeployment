@@ -5,9 +5,7 @@ import {Component} from "@angular/core";
     '<nav class="col-md-8 col-md-offset-2">' +
     ' <ul class="nav nav-pills">' +
     '<li>' +
-    '<a' +
-    '[routerLink]=' +
-    '"[/messages]">Messanger</a>' +
+    '<a>Messanger</a>' +
     '</li>' +
     '<li>' +
     '<a>Authentication</a>' +
