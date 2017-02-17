@@ -12,7 +12,7 @@ export class  MessageComponent{
 
     @Input() message: Message
     @Output() editClicked = new EventEmitter<string>();  //EventEmitter is basically generic
-    color = 'red';
+    color = 'green';
     onEdit()
     {
         this.editClicked.emit('A new value');
