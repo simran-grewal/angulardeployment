@@ -5,8 +5,12 @@ import {FormGroup, FormControl, Validators} from "@angular/forms";
     templateUrl: './signup.component.html'
 })
 export class SignupComponent implements OnInit{
-    myForm: FormGroup;
+    myForm: FormGroup; // this is creation of form programmaticaly--- type is FormGroup
 
+        onSubmit() {
+             console.log(this.myForm);
+            this.myForm.reset();
+        }
     ngOnInit(){
         this.myForm = new FormGroup({
            firstName: new FormControl(null,Validators.required),//initial value,

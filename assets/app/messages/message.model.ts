@@ -1,4 +1,4 @@
-// this is how message  in user look like
+// this is how message  in user look like in front end
 export class Message{
     content: string;
     username: string;

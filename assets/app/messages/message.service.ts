@@ -1,12 +1,25 @@
-import {Message} from "./message.model"
+import {Message} from "./message.model";
+import {Injectable} from "@angular/core";
+import {Http, Response, Headers} from "@angular/http";
+import {Observable} from "rxjs";
+import 'rxjs/Rx'; //  this is for map() function
+@Injectable() // that we able to inject HTTP in this message classs
 export class MessageService
 {
    private messages: Message[] = [];
 
+    // this is constucture allowto use HTTP
+    constructor(private http : Http) {}
+
     addMessage(message: Message){
         this.messages.push(message)
+        const body = JSON.stringify(message);
+        const headers = new Headers({'Content-Type': 'application/json'});
+        return this.http.post('http://localhost:3000/message', body, {headers: headers})
+            .map((response:Response) => response.json())
+            .catch((error: Response) => Observable.throw(error.json()));
 
-        console.log(this.messages);
+        //console.log(this.messages);
     }
 
     getMessage()
