@@ -18,7 +18,7 @@ export class  MessageComponent{
     color = 'purple';
     onEdit()
     {
-        this.editClicked.emit('A new value');
+        this.messageService.editMessage(this.message);
     }
 
     onDelete()

@@ -1,5 +1,5 @@
 import {Message} from "./message.model";
-import {Injectable} from "@angular/core";
+import {Injectable, EventEmitter} from "@angular/core";
 import {Http, Response, Headers} from "@angular/http";
 import {Observable} from "rxjs";
 import 'rxjs/Rx'; //  this is for map() function
@@ -7,6 +7,7 @@ import 'rxjs/Rx'; //  this is for map() function
 export class MessageService
 {
    private messages: Message[] = [];
+    messageIsEdit = new EventEmitter<Message>()
 
     // this is constucture allowto use HTTP
     constructor(private http : Http) {}
@@ -24,10 +25,24 @@ export class MessageService
 
     getMessage()
     {
-        return this.messages;
+        return  this.http.get('http://localhost:3000/message')
+            .map((response: Response) => {
+                const messages = response.json().obj;
+                let transformMessages: Message[] = [];
+                for(let message of messages){
+                    transformMessages.push(new Message(message.content, 'Dummy',message.id, null));
+                }
+
+                this.messages = transformMessages;
+                return transformMessages;
+            })
+            .catch((error: Response) => Observable.throw(error.json()));
     }
 
 
+    editMessage(message: Message){
+        this.messageIsEdit.emit(message);
+    }
     deleteMessage(message: Message)
     {
         this.messages.splice(this.messages.indexOf(message), 1);

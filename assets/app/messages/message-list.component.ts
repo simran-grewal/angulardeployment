@@ -13,7 +13,13 @@ export class MessageListComponent implements OnInit{
 
     ngOnInit()
     {
-         this.messages = this.messageService.getMessage();
+        this.messageService.getMessage()
+
+            .subscribe(
+            (messages: Message[]) => {
+                this.messages = messages;
+            }
+        )
     }
 
 }

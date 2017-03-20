@@ -8,7 +8,7 @@ var mongoose = require('mongoose'); // to point to the mongoose which i installe
 var appRoutes = require('./routes/app');
 var messageRoutes = require('./routes/messages');
 var app = express();
-mongoose.connect('test-user:Grew3581@ds033285.mlab.com:33285/angular2-deployment')        //  //               localhost:27017/node-angular
+mongoose.connect('localhost:27017/node-angular');        //  test-user:Grew3581@ds033285.mlab.com:33285/angular2-deployment//
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'hbs');
